@@ -1,44 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.github.lifveras</groupId>
-    <artifactId>bradeco_template_dependencia_pic</artifactId>
+    <groupId>io.github.ArthurDeFaria</groupId>
+    <artifactId>conversor-moeda</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-    </properties>
-
-    <name>io.github.lifveras.bredeco_pic_abstract</name>
-    <description>Abstrações do PIC em Java</description>
-    <url>https://github.com/lifveras/bradeco_pic_abstract</url>
+    <name>ConversorMoedaComponent</name>
+    <description>Componente Java para conversão de moedas</description>
+    <url>https://github.com/ArthurDeFaria/conversor-moeda</url>
 
     <licenses>
         <license>
             <name>The Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
     </licenses>
 
+    <scm>
+        <url>https://github.com/ArthurDeFaria/conversor-moeda</url>
+        <connection>scm:git:https://github.com/ArthurDeFaria/conversor-moeda.git</connection>
+        <developerConnection>scm:git:git@github.com:ArthurDeFaria/conversor-moeda.git</developerConnection>
+    </scm>
+
     <developers>
         <developer>
-            <id>lifveras</id>
-            <name>Luiz Gustavo Véras</name>
-            <email>gustavo_veras@ifsp.edu.br</email>
+            <id>arthur</id>
+            <name>Arthur de Faria</name>
+            <email>arthur_de_faria@outlook.com</email>
         </developer>
     </developers>
-
-    <scm>
-        <url>https://github.com/lifveras/bradeco_pic_abstract</url>
-        <connection>scm:git:git://github.com/lifveras/bradeco_pic_abstract</connection>
-        <developerConnection>scm:git:ssh://git@github.com:lifveras/bradeco_pic_abstract.git</developerConnection>
-    </scm>
 
     <dependencies>
         <dependency>
@@ -48,12 +41,53 @@
         </dependency>
     </dependencies>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.5</version>
+                <version>3.0.1</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
@@ -63,40 +97,8 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.2.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar-no-fork</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.2.0</version>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.sonatype.central</groupId>
-                <artifactId>central-publishing-maven-plugin</artifactId>
-                <version>0.7.0</version>
-                <extensions>true</extensions>
                 <configuration>
-                    <publishingServerId>central</publishingServerId>
+                    <keyname>D53455B538C972F41ECD1B3B3103990C29F973C2</keyname>
                 </configuration>
             </plugin>
         </plugins>
